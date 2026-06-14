@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Aurora",
+    "slug": "aurora-health-companion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.aurora.healthcompanion"
+    },
+    "android": {
+      "package": "com.aurora.healthcompanion",
+      "backgroundColor": "#060918"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "91db47be-5b6a-49d2-8b49-7210389c6020"
+      }
+    }
+  }
+}
