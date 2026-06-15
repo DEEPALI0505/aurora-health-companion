@@ -12,8 +12,8 @@ A beautiful glassmorphism health companion app built with React Native + Expo.
 
 ## 📱 Features
 
-✅ Glassmorphism / Liquid Glass UI throughout the app 
-✅ Onboarding with 5 animated slides (auto-play + swipe) 
+✅ Glassmorphism / Liquid Glass UI throughout the app               
+✅ Onboarding with 5 animated slides (auto-play + swipe)              
 ✅ Complete Auth system (Signup / Login) powered by Supabase 
 ✅ Home dashboard with 3D circular carousel (auto-slide + swipe) 
 ✅ Time-based greeting — Good Morning / Afternoon / Evening 
