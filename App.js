@@ -22,11 +22,10 @@ import {
 } from './src/notifications';
 import { onAuthChange, getUserProfile } from './src/supabase';
 
-// Screens
 import OnboardingScreen from './src/screens/OnboardingScreen';
 import AuthScreen from './src/screens/AuthScreen';
 import HomeScreen from './src/screens/HomeScreen';
-import VoiceBot from './src/VoiceBot';
+import VoiceBotScreen from './src/VoiceBot';
 import {
   WaterScreen, SleepScreen, HabitsScreen, NutritionScreen,
   NotificationsScreen, AIScreen, ProfileScreen,
@@ -41,51 +40,50 @@ const TAB_CONFIG = [
   { name: 'Home', icon: '🏠' },
   { name: 'Water', icon: '💧' },
   { name: 'Habits', icon: '⚡' },
+  { name: 'Aurora', icon: '🌿' },
   { name: 'Notifications', icon: '🔔' },
 ];
 
 function MainTabs({ user }) {
   return (
-    <View style={{ flex: 1 }}>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: 'rgba(6,9,24,0.85)',
-            borderTopColor: 'rgba(255,255,255,0.12)',
-            borderTopWidth: 1,
-            paddingBottom: 20,
-            paddingTop: 10,
-            height: 82,
-          },
-          tabBarBackground: () => (
-            <BlurView intensity={60} tint="dark" style={StyleSheet.absoluteFillObject} />
-          ),
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => {
-            const cfg = TAB_CONFIG.find(t => t.name === route.name);
-            return (
-              <View style={{ alignItems: 'center', gap: 3 }}>
-                <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.45 }}>{cfg?.icon}</Text>
-                <Text style={{ fontSize: 9, fontWeight: '600', letterSpacing: 0.5, color: focused ? Colors.teal : Colors.text3 }}>
-                  {route.name.toUpperCase()}
-                </Text>
-              </View>
-            );
-          },
-        })}
-      >
-        <Tab.Screen name="Home">
-          {(props) => <HomeScreen {...props} user={user} />}
-        </Tab.Screen>
-        <Tab.Screen name="Water" component={WaterScreen} />
-        <Tab.Screen name="Habits" component={HabitsScreen} />
-        <Tab.Screen name="Notifications" component={NotificationsScreen} />
-      </Tab.Navigator>
-
-      {/* Voice Bot — floats above everything */}
-      <VoiceBot userName={user?.full_name?.split(' ')[0] || 'there'} />
-    </View>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: 'rgba(255,255,255,0.95)',
+          borderTopColor: 'rgba(0,0,0,0.08)',
+          borderTopWidth: 1,
+          paddingBottom: 20,
+          paddingTop: 10,
+          height: 82,
+        },
+        tabBarBackground: () => (
+          <BlurView intensity={60} tint="light" style={StyleSheet.absoluteFillObject} />
+        ),
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused }) => {
+          const cfg = TAB_CONFIG.find(t => t.name === route.name);
+          return (
+            <View style={{ alignItems: 'center', gap: 3 }}>
+              <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.4 }}>{cfg?.icon}</Text>
+              <Text style={{ fontSize: 9, fontWeight: '600', letterSpacing: 0.5, color: focused ? Colors.teal : 'rgba(0,0,0,0.35)' }}>
+                {route.name.toUpperCase()}
+              </Text>
+            </View>
+          );
+        },
+      })}
+    >
+      <Tab.Screen name="Home">
+        {(props) => <HomeScreen {...props} user={user} />}
+      </Tab.Screen>
+      <Tab.Screen name="Water" component={WaterScreen} />
+      <Tab.Screen name="Habits" component={HabitsScreen} />
+      <Tab.Screen name="Aurora">
+        {(props) => <VoiceBotScreen {...props} userName={user?.full_name?.split(' ')[0] || 'there'} />}
+      </Tab.Screen>
+      <Tab.Screen name="Notifications" component={NotificationsScreen} />
+    </Tab.Navigator>
   );
 }
 
@@ -93,13 +91,13 @@ function AppCore({ user, onLogout }) {
   return (
     <NavigationContainer
       theme={{
-        dark: true,
+        dark: false,
         colors: {
           primary: Colors.teal,
-          background: Colors.bg,
-          card: Colors.bg,
+          background: '#FFFFFF',
+          card: '#FFFFFF',
           text: Colors.text,
-          border: Colors.glassBorder,
+          border: 'rgba(0,0,0,0.08)',
           notification: Colors.teal,
         },
       }}
@@ -120,7 +118,7 @@ function AppCore({ user, onLogout }) {
 }
 
 export default function App() {
-  const [appState, setAppState] = useState('loading'); // loading | onboarding | auth | main
+  const [appState, setAppState] = useState('loading');
   const [user, setUser] = useState(null);
 
   const onLayoutRootView = useCallback(async () => {
@@ -129,10 +127,7 @@ export default function App() {
 
   useEffect(() => {
     const init = async () => {
-      // Check onboarding
       const onboardingDone = await AsyncStorage.getItem('aurora_onboarding_done');
-
-      // Listen to auth changes
       const { data: { subscription } } = onAuthChange(async (session) => {
         if (session?.user) {
           const profile = await getUserProfile();
@@ -147,8 +142,6 @@ export default function App() {
           }
         }
       });
-
-      // Init notifications
       try {
         const granted = await registerForPushNotifications();
         if (granted) {
@@ -158,16 +151,14 @@ export default function App() {
           await scheduleDailyInsight(true);
         }
       } catch (e) {}
-
       return () => subscription?.unsubscribe();
     };
-
     init();
   }, []);
 
   const handleOnboardingDone = () => setAppState('auth');
 
-  const handleAuthSuccess = async (authUser) => {
+  const handleAuthSuccess = async () => {
     const profile = await getUserProfile();
     setUser(profile);
     setAppState('main');
@@ -180,8 +171,8 @@ export default function App() {
 
   if (appState === 'loading') {
     return (
-      <View style={{ flex: 1, backgroundColor: Colors.bg, alignItems: 'center', justifyContent: 'center' }} onLayout={onLayoutRootView}>
-        <LinearGradient colors={['rgba(0,245,212,0.25)', 'rgba(177,151,252,0.2)']} style={{ width: 72, height: 72, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+      <View style={{ flex: 1, backgroundColor: '#FFFFFF', alignItems: 'center', justifyContent: 'center' }} onLayout={onLayoutRootView}>
+        <LinearGradient colors={['rgba(0,196,167,0.25)', 'rgba(124,92,191,0.2)']} style={{ width: 72, height: 72, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
           <Text style={{ fontSize: 32 }}>🌿</Text>
         </LinearGradient>
         <Text style={{ color: Colors.text, fontSize: 22, fontWeight: '700', letterSpacing: 1 }}>aurora</Text>
@@ -194,8 +185,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <SafeAreaProvider>
         <AuroraProvider user={user}>
-          <StatusBar barStyle={appState === 'main' ? 'light-content' : 'dark-content'} translucent backgroundColor="transparent" />
-
+          <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
           {appState === 'onboarding' && <OnboardingScreen onDone={handleOnboardingDone} />}
           {appState === 'auth' && <AuthScreen onAuthSuccess={handleAuthSuccess} />}
           {appState === 'main' && <AppCore user={user} onLogout={handleLogout} />}
