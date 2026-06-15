@@ -3,6 +3,13 @@
 A beautiful liquid-glass health companion app built with React Native + Expo.
 
 ---
+## 📥 Direct Download
+
+👉 **[Download Aurora APK](https://expo.dev/accounts/deepali0505/projects/aurora-health-companion/builds/36929e25-e9cb-41bc-96d4-46de61efabfc)**
+
+> Settings → Security → Install Unknown Apps → Allow
+
+---
 
 ## 📱 Features
 
