@@ -12,23 +12,23 @@ A beautiful glassmorphism health companion app built with React Native + Expo.
 
 ## 📱 Features
 
-✅ Glassmorphism / Liquid Glass UI throughout the app
-✅ Onboarding with 5 animated slides (auto-play + swipe)
-✅ Complete Auth system (Signup / Login) powered by Supabase
-✅ Home dashboard with 3D circular carousel (auto-slide + swipe)
-✅ Time-based greeting — Good Morning / Afternoon / Evening
-✅ Hydration tracker with animated bottle + quick-add buttons
-✅ Sleep tracker — manual log modal + quick log (6h, 6.5h, 7h, 7.5h, 8h) + weekly bar chart
-✅ Habit tracker — create your own habits, tap to complete, notes, delete
-✅ Nutrition tracker — log meals (Breakfast/Lunch/Dinner/Snack) with calories + macros
-✅ AI Prediction Board — real-time health score out of 100 + personalized predictions
-✅ Weekly Journey chart (Water / Sleep / Habits toggle)
-✅ Aurora AI Voice Bot — type or speak, replies in text + voice, auto-logs water from chat
-✅ Smart Notification system — Water every 1/2/3 hrs, Sleep reminder, Habit nudges, Daily insight
-✅ Profile screen — edit name, age, weight, height, water goal, sleep target
-✅ Logout with confirmation
-✅ All data starts empty — fills as you log (no fake pre-filled data)
-✅ Local data persistence (AsyncStorage)
+✅ Glassmorphism / Liquid Glass UI throughout the app 
+✅ Onboarding with 5 animated slides (auto-play + swipe) 
+✅ Complete Auth system (Signup / Login) powered by Supabase 
+✅ Home dashboard with 3D circular carousel (auto-slide + swipe) 
+✅ Time-based greeting — Good Morning / Afternoon / Evening 
+✅ Hydration tracker with animated bottle + quick-add buttons 
+✅ Sleep tracker — manual log modal + quick log (6h, 6.5h, 7h, 7.5h, 8h) + weekly bar chart 
+✅ Habit tracker — create your own habits, tap to complete, notes, delete 
+✅ Nutrition tracker — log meals (Breakfast/Lunch/Dinner/Snack) with calories + macros 
+✅ AI Prediction Board — real-time health score out of 100 + personalized predictions 
+✅ Weekly Journey chart (Water / Sleep / Habits toggle) 
+✅ Aurora AI Voice Bot — type or speak, replies in text + voice, auto-logs water from chat 
+✅ Smart Notification system — Water every 1/2/3 hrs, Sleep reminder, Habit nudges, Daily insight 
+✅ Profile screen — edit name, age, weight, height, water goal, sleep target  
+✅ Logout with confirmation 
+✅ All data starts empty — fills as you log (no fake pre-filled data)  
+✅ Local data persistence (AsyncStorage)  
 
 ---
 
