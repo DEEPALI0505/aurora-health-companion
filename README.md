@@ -2,7 +2,7 @@
 
 A beautiful glassmorphism health companion app built with React Native + Expo.
 
-## 📥 Direct Download (No setup needed!)
+##  Direct Download (No setup needed!)
 
 👉 **[Download Aurora APK](https://expo.dev/accounts/deepali0505/projects/aurora-health-companion/builds/36929e25-e9cb-41bc-96d4-46de61efabfc)**
 
@@ -32,7 +32,7 @@ A beautiful glassmorphism health companion app built with React Native + Expo.
 
 ---
 
-## 🚀 How to Run on Your Phone
+##  How to Run on Your Phone
 
 **Step 1 — Install Node.js**
 Download from: https://nodejs.org (LTS version)
@@ -59,11 +59,11 @@ After running `npx expo start`, a QR code will appear in the terminal.
 - Android: Open Expo Go app → Scan QR code
 - iPhone: Open Camera app → Scan QR code → tap the link
 
-> ⚠️ Your phone and computer must be on the same WiFi network
+>  Your phone and computer must be on the same WiFi network
 
 ---
 
-## 📦 Build APK (Android)
+##  Build APK (Android)
 
 ```bash
 # Install EAS CLI
@@ -78,7 +78,7 @@ eas build --platform android --profile preview
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 aurora-app/
@@ -99,7 +99,7 @@ aurora-app/
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Tech |
 |---|---|
@@ -116,7 +116,7 @@ aurora-app/
 
 ---
 
-## 🎨 Design System
+##  Design System
 
 - **Background:** White `#FFFFFF` with soft purple-teal gradient orbs
 - **Glass cards:** `BlurView intensity={65}` + `rgba(255,255,255,0.52)` + top shine line
@@ -126,7 +126,7 @@ aurora-app/
 
 ---
 
-## 💡 Troubleshooting
+##  Troubleshooting
 
 **"Metro bundler not starting"**
 ```bash
