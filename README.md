@@ -10,7 +10,7 @@ A beautiful glassmorphism health companion app built with React Native + Expo.
 
 ---
 
-## 📱 Features
+##  Features
 
 ✅ Glassmorphism / Liquid Glass UI throughout the app               
 ✅ Onboarding with 5 animated slides (auto-play + swipe)              
